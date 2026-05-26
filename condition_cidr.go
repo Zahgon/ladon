@@ -22,7 +22,6 @@ package ladon
 
 import (
 	"context"
-	"net"
 )
 
 // CIDRCondition makes sure that the warden requests' IP address is in the given CIDR.
@@ -32,25 +31,9 @@ type CIDRCondition struct {
 
 // Fulfills returns true if the the request is fulfilled by the condition.
 func (c *CIDRCondition) Fulfills(ctx context.Context, value interface{}, _ *Request) bool {
-	ips, ok := value.(string)
-	if !ok {
-		return false
-	}
-
-	_, cidrnet, err := net.ParseCIDR(c.CIDR)
-	if err != nil {
-		return false
-	}
-
-	ip := net.ParseIP(ips)
-	if ip == nil {
-		return false
-	}
-
-	return cidrnet.Contains(ip)
+	_ = "STUB: not implemented"
+	return false
 }
 
 // GetName returns the condition's name.
-func (c *CIDRCondition) GetName() string {
-	return "CIDRCondition"
-}
+func (c *CIDRCondition) GetName() string { _ = "STUB: not implemented"; return "" }

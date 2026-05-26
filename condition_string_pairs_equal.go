@@ -30,29 +30,9 @@ type StringPairsEqualCondition struct{}
 // Fulfills returns true if the given value is an array of string arrays and
 // each string array has exactly two values which are equal
 func (c *StringPairsEqualCondition) Fulfills(ctx context.Context, value interface{}, _ *Request) bool {
-	pairs, PairsOk := value.([]interface{})
-	if !PairsOk {
-		return false
-	}
-
-	for _, v := range pairs {
-		pair, PairOk := v.([]interface{})
-		if !PairOk || (len(pair) != 2) {
-			return false
-		}
-
-		a, AOk := pair[0].(string)
-		b, BOk := pair[1].(string)
-
-		if !AOk || !BOk || (a != b) {
-			return false
-		}
-	}
-
-	return true
+	_ = "STUB: not implemented"
+	return false
 }
 
 // GetName returns the condition's name.
-func (c *StringPairsEqualCondition) GetName() string {
-	return "StringPairsEqualCondition"
-}
+func (c *StringPairsEqualCondition) GetName() string { _ = "STUB: not implemented"; return "" }

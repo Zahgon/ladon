@@ -23,8 +23,6 @@ package ladon
 import (
 	"context"
 	"log"
-	"os"
-	"strings"
 )
 
 // AuditLoggerInfo outputs information about granting or rejecting policies.
@@ -32,34 +30,16 @@ type AuditLoggerInfo struct {
 	Logger *log.Logger
 }
 
-func (a *AuditLoggerInfo) logger() *log.Logger {
-	if a.Logger == nil {
-		a.Logger = log.New(os.Stderr, "", log.LstdFlags)
-	}
-	return a.Logger
-}
+func (a *AuditLoggerInfo) logger() *log.Logger { _ = "STUB: not implemented"; return nil }
 
 func (a *AuditLoggerInfo) LogRejectedAccessRequest(ctx context.Context, r *Request, p Policies, d Policies) {
-	if len(d) > 1 {
-		allowed := joinPoliciesNames(d[0 : len(d)-1])
-		denied := d[len(d)-1].GetID()
-		a.logger().Printf("policies %s allow access, but policy %s forcefully denied it", allowed, denied)
-	} else if len(d) == 1 {
-		denied := d[len(d)-1].GetID()
-		a.logger().Printf("policy %s forcefully denied the access", denied)
-	} else {
-		a.logger().Printf("no policy allowed access")
-	}
+	_ = "STUB: not implemented"
+	return
 }
 
 func (a *AuditLoggerInfo) LogGrantedAccessRequest(ctx context.Context, r *Request, p Policies, d Policies) {
-	a.logger().Printf("policies %s allow access", joinPoliciesNames(d))
+	_ = "STUB: not implemented"
+	return
 }
 
-func joinPoliciesNames(policies Policies) string {
-	names := []string{}
-	for _, policy := range policies {
-		names = append(names, policy.GetID())
-	}
-	return strings.Join(names, ", ")
-}
+func joinPoliciesNames(policies Policies) string { _ = "STUB: not implemented"; return "" }

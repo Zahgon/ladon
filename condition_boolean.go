@@ -14,14 +14,11 @@ type BooleanCondition struct {
 }
 
 // GetName returns the name of the BooleanCondition
-func (c *BooleanCondition) GetName() string {
-	return "BooleanCondition"
-}
+func (c *BooleanCondition) GetName() string { _ = "STUB: not implemented"; return "" }
 
 // Fulfills determines if the BooleanCondition is fulfilled.
 // The BooleanCondition is fulfilled if the provided boolean value matches the conditions boolean value.
 func (c *BooleanCondition) Fulfills(ctx context.Context, value interface{}, _ *Request) bool {
-	val, ok := value.(bool)
-
-	return ok && val == c.BooleanValue
+	_ = "STUB: not implemented"
+	return false
 }

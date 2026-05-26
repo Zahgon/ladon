@@ -22,13 +22,9 @@ package memory
 
 import (
 	"context"
-	"sort"
 	"sync"
 
-	"github.com/pkg/errors"
-
 	. "github.com/ory/ladon"
-	"github.com/ory/pagination"
 )
 
 // MemoryManager is an in-memory (non-persistent) implementation of Manager.
@@ -38,104 +34,63 @@ type MemoryManager struct {
 }
 
 // NewMemoryManager constructs and initializes new MemoryManager with no policies.
-func NewMemoryManager() *MemoryManager {
-	return &MemoryManager{
-		Policies: map[string]Policy{},
-	}
-}
+func NewMemoryManager() *MemoryManager { _ = "STUB: not implemented"; return nil }
 
 // Update updates an existing policy.
 func (m *MemoryManager) Update(ctx context.Context, policy Policy) error {
-	m.Lock()
-	defer m.Unlock()
-	m.Policies[policy.GetID()] = policy
+	_ = "STUB: not implemented"
 	return nil
 }
 
 // GetAll returns all policies.
 func (m *MemoryManager) GetAll(ctx context.Context, limit, offset int64) (Policies, error) {
-	keys := make([]string, len(m.Policies))
-	i := 0
-	m.RLock()
-	for key := range m.Policies {
-		keys[i] = key
-		i++
-	}
-
-	start, end := pagination.Index(int(limit), int(offset), len(m.Policies))
-	sort.Strings(keys)
-	ps := make(Policies, len(keys[start:end]))
-	i = 0
-	for _, key := range keys[start:end] {
-		ps[i] = m.Policies[key]
-		i++
-	}
-	m.RUnlock()
-	return ps, nil
+	_ = "STUB: not implemented"
+	return *new(Policies), nil
 }
 
 // Create a new pollicy to MemoryManager.
 func (m *MemoryManager) Create(ctx context.Context, policy Policy) error {
-	m.Lock()
-	defer m.Unlock()
-
-	if _, found := m.Policies[policy.GetID()]; found {
-		return errors.New("Policy exists")
-	}
-
-	m.Policies[policy.GetID()] = policy
+	_ = "STUB: not implemented"
 	return nil
 }
 
 // Get retrieves a policy.
 func (m *MemoryManager) Get(ctx context.Context, id string) (Policy, error) {
-	m.RLock()
-	defer m.RUnlock()
-	p, ok := m.Policies[id]
-	if !ok {
-		return nil, errors.New("Not found")
-	}
-
-	return p, nil
+	_ = "STUB: not implemented"
+	return *new(Policy), nil
 }
 
 // Delete removes a policy.
 func (m *MemoryManager) Delete(ctx context.Context, id string) error {
-	m.Lock()
-	defer m.Unlock()
-	delete(m.Policies, id)
+	_ = "STUB: not implemented"
 	return nil
 }
 
 func (m *MemoryManager) findAllPolicies() (Policies, error) {
-	m.RLock()
-	defer m.RUnlock()
-	ps := make(Policies, len(m.Policies))
-	var count int
-	for _, p := range m.Policies {
-		ps[count] = p
-		count++
-	}
-	return ps, nil
+	_ = "STUB: not implemented"
+	return *new(Policies), nil
 }
 
 // FindRequestCandidates returns candidates that could match the request object. It either returns
 // a set that exactly matches the request, or a superset of it. If an error occurs, it returns nil and
 // the error.
 func (m *MemoryManager) FindRequestCandidates(ctx context.Context, r *Request) (Policies, error) {
-	return m.findAllPolicies()
+	_ = "STUB: not implemented"
+	return *new(Policies), nil
 }
 
 // FindPoliciesForSubject returns policies that could match the subject. It either returns
 // a set of policies that applies to the subject, or a superset of it.
 // If an error occurs, it returns nil and the error.
 func (m *MemoryManager) FindPoliciesForSubject(ctx context.Context, subject string) (Policies, error) {
-	return m.findAllPolicies()
+	_ = "STUB: not implemented"
+	return *new(Policies), nil
 }
 
 // FindPoliciesForResource returns policies that could match the resource. It either returns
 // a set of policies that apply to the resource, or a superset of it.
 // If an error occurs, it returns nil and the error.
 func (m *MemoryManager) FindPoliciesForResource(ctx context.Context, resource string) (Policies, error) {
-	return m.findAllPolicies()
+	_ = "STUB: not implemented"
+	return *new(Policies), nil
 }

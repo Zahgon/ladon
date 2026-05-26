@@ -23,9 +23,12 @@ package ladon
 // MetricNoOp is the default metrics implementation , that tracks nothing.
 type MetricNoOp struct{}
 
-func (*MetricNoOp) RequestDeniedBy(r Request, p Policy)                   {}
-func (*MetricNoOp) RequestAllowedBy(r Request, p Policies)                {}
-func (*MetricNoOp) RequestNoMatch(r Request)                              {}
-func (*MetricNoOp) RequestProcessingError(r Request, p Policy, err error) {}
+func (*MetricNoOp) RequestDeniedBy(r Request, p Policy)    { _ = "STUB: not implemented"; return }
+func (*MetricNoOp) RequestAllowedBy(r Request, p Policies) { _ = "STUB: not implemented"; return }
+func (*MetricNoOp) RequestNoMatch(r Request)               { _ = "STUB: not implemented"; return }
+func (*MetricNoOp) RequestProcessingError(r Request, p Policy, err error) {
+	_ = "STUB: not implemented"
+	return
+}
 
 var DefaultMetric = &MetricNoOp{}

@@ -20,12 +20,6 @@
 
 package ladon
 
-import (
-	"encoding/json"
-
-	"github.com/pkg/errors"
-)
-
 // Policies is an array of policies.
 type Policies []Policy
 
@@ -78,97 +72,73 @@ type DefaultPolicy struct {
 }
 
 // UnmarshalJSON overwrite own policy with values of the given in policy in JSON format
-func (p *DefaultPolicy) UnmarshalJSON(data []byte) error {
-	var pol = struct {
-		ID          string     `json:"id" gorethink:"id"`
-		Description string     `json:"description" gorethink:"description"`
-		Subjects    []string   `json:"subjects" gorethink:"subjects"`
-		Effect      string     `json:"effect" gorethink:"effect"`
-		Resources   []string   `json:"resources" gorethink:"resources"`
-		Actions     []string   `json:"actions" gorethink:"actions"`
-		Conditions  Conditions `json:"conditions" gorethink:"conditions"`
-		Meta        []byte     `json:"meta" gorethink:"meta"`
-	}{
-		Conditions: Conditions{},
-	}
-
-	if err := json.Unmarshal(data, &pol); err != nil {
-		return errors.WithStack(err)
-	}
-
-	*p = *&DefaultPolicy{
-		ID:          pol.ID,
-		Description: pol.Description,
-		Subjects:    pol.Subjects,
-		Effect:      pol.Effect,
-		Resources:   pol.Resources,
-		Actions:     pol.Actions,
-		Conditions:  pol.Conditions,
-		Meta:        pol.Meta,
-	}
-	return nil
-}
+func (p *DefaultPolicy) UnmarshalJSON(data []byte) error { _ = "STUB: not implemented"; return nil }
 
 // UnmarshalMeta parses the policies []byte encoded metadata and stores the result in the value pointed to by v.
-func (p *DefaultPolicy) UnmarshalMeta(v interface{}) error {
-	if err := json.Unmarshal(p.Meta, &v); err != nil {
-		return errors.WithStack(err)
-	}
-
-	return nil
-}
+func (p *DefaultPolicy) UnmarshalMeta(v interface{}) error { _ = "STUB: not implemented"; return nil }
 
 // GetID returns the policies id.
 func (p *DefaultPolicy) GetID() string {
-	return p.ID
+	_ = "STUB: not implemented"
+
+	// GetDescription returns the policies description.
+	return ""
 }
 
-// GetDescription returns the policies description.
-func (p *DefaultPolicy) GetDescription() string {
-	return p.Description
-}
+func (p *DefaultPolicy) GetDescription() string { _ = "STUB: not implemented"; return "" }
 
 // GetSubjects returns the policies subjects.
 func (p *DefaultPolicy) GetSubjects() []string {
-	return p.Subjects
+	_ = "STUB: not implemented"
+
+	// AllowAccess returns true if the policy effect is allow, otherwise false.
+	return nil
 }
 
-// AllowAccess returns true if the policy effect is allow, otherwise false.
-func (p *DefaultPolicy) AllowAccess() bool {
-	return p.Effect == AllowAccess
-}
+func (p *DefaultPolicy) AllowAccess() bool { _ = "STUB: not implemented"; return false }
 
 // GetEffect returns the policies effect which might be 'allow' or 'deny'.
 func (p *DefaultPolicy) GetEffect() string {
-	return p.Effect
+	_ = "STUB: not implemented"
+
+	// GetResources returns the policies resources.
+	return ""
 }
 
-// GetResources returns the policies resources.
 func (p *DefaultPolicy) GetResources() []string {
-	return p.Resources
+	_ = "STUB: not implemented"
+
+	// GetActions returns the policies actions.
+	return nil
 }
 
-// GetActions returns the policies actions.
 func (p *DefaultPolicy) GetActions() []string {
-	return p.Actions
+	_ = "STUB: not implemented"
+
+	// GetConditions returns the policies conditions.
+	return nil
 }
 
-// GetConditions returns the policies conditions.
 func (p *DefaultPolicy) GetConditions() Conditions {
-	return p.Conditions
+	_ = "STUB: not implemented"
+	return *
+
+	// GetMeta returns the policies arbitrary metadata set by the user.
+	new(Conditions)
 }
 
-// GetMeta returns the policies arbitrary metadata set by the user.
 func (p *DefaultPolicy) GetMeta() []byte {
-	return p.Meta
+	_ = "STUB: not implemented"
+
+	// GetEndDelimiter returns the delimiter which identifies the end of a regular expression.
+	return nil
 }
 
-// GetEndDelimiter returns the delimiter which identifies the end of a regular expression.
 func (p *DefaultPolicy) GetEndDelimiter() byte {
-	return '>'
+	_ = "STUB: not implemented"
+
+	// GetStartDelimiter returns the delimiter which identifies the beginning of a regular expression.
+	return 0
 }
 
-// GetStartDelimiter returns the delimiter which identifies the beginning of a regular expression.
-func (p *DefaultPolicy) GetStartDelimiter() byte {
-	return '<'
-}
+func (p *DefaultPolicy) GetStartDelimiter() byte { _ = "STUB: not implemented"; return 0 }

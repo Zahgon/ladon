@@ -22,7 +22,6 @@ package ladon
 
 import (
 	"context"
-	"regexp"
 )
 
 // StringMatchCondition is a condition which is fulfilled if the given
@@ -34,14 +33,9 @@ type StringMatchCondition struct {
 // Fulfills returns true if the given value is a string and matches the regex
 // pattern in StringMatchCondition.Matches
 func (c *StringMatchCondition) Fulfills(ctx context.Context, value interface{}, _ *Request) bool {
-	s, ok := value.(string)
-
-	matches, _ := regexp.MatchString(c.Matches, s)
-
-	return ok && matches
+	_ = "STUB: not implemented"
+	return false
 }
 
 // GetName returns the condition's name.
-func (c *StringMatchCondition) GetName() string {
-	return "StringMatchCondition"
-}
+func (c *StringMatchCondition) GetName() string { _ = "STUB: not implemented"; return "" }

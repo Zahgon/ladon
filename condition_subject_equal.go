@@ -27,12 +27,9 @@ type EqualsSubjectCondition struct{}
 
 // Fulfills returns true if the request's subject is equal to the given value string
 func (c *EqualsSubjectCondition) Fulfills(ctx context.Context, value interface{}, r *Request) bool {
-	s, ok := value.(string)
-
-	return ok && s == r.Subject
+	_ = "STUB: not implemented"
+	return false
 }
 
 // GetName returns the condition's name.
-func (c *EqualsSubjectCondition) GetName() string {
-	return "EqualsSubjectCondition"
-}
+func (c *EqualsSubjectCondition) GetName() string { _ = "STUB: not implemented"; return "" }

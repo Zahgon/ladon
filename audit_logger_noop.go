@@ -26,8 +26,13 @@ import "context"
 type AuditLoggerNoOp struct{}
 
 func (*AuditLoggerNoOp) LogRejectedAccessRequest(ctx context.Context, r *Request, p Policies, d Policies) {
+	_ = "STUB: not implemented"
+	return
 }
+
 func (*AuditLoggerNoOp) LogGrantedAccessRequest(ctx context.Context, r *Request, p Policies, d Policies) {
+	_ = "STUB: not implemented"
+	return
 }
 
 var DefaultAuditLogger = &AuditLoggerNoOp{}

@@ -21,88 +21,37 @@
 package ladon
 
 import (
-	"strings"
-
 	"github.com/dlclark/regexp2"
-	"github.com/hashicorp/golang-lru"
-	"github.com/pkg/errors"
-
-	"github.com/ory/ladon/compiler"
 )
 
-func NewRegexpMatcher(size int) *RegexpMatcher {
-	if size <= 0 {
-		size = 512
-	}
+func NewRegexpMatcher(size int) *RegexpMatcher { _ = "STUB: not implemented"; return nil }
 
-	// golang-lru only returns an error if the cache's size is 0. This, we can safely ignore this error.
-	cache, _ := lru.New(size)
-	return &RegexpMatcher{
-		Cache: cache,
-	}
-}
+// golang-lru only returns an error if the cache's size is 0. This, we can safely ignore this error.
 
 type RegexpMatcher struct {
 	*lru.Cache
 }
 
-func (m *RegexpMatcher) get(pattern string) *regexp2.Regexp {
-	if val, ok := m.Cache.Get(pattern); !ok {
-		return nil
-	} else if reg, ok := val.(*regexp2.Regexp); !ok {
-		return nil
-	} else {
-		return reg
-	}
-}
+func (m *RegexpMatcher) get(pattern string) *regexp2.Regexp { _ = "STUB: not implemented"; return nil }
 
-func (m *RegexpMatcher) set(pattern string, reg *regexp2.Regexp) {
-	m.Cache.Add(pattern, reg)
-}
+func (m *RegexpMatcher) set(pattern string, reg *regexp2.Regexp) { _ = "STUB: not implemented"; return }
 
 // Matches a needle with an array of regular expressions and returns true if a match was found.
 func (m *RegexpMatcher) Matches(p Policy, haystack []string, needle string) (bool, error) {
-	var reg *regexp2.Regexp
-	var err error
-	for _, h := range haystack {
-
-		// This means that the current haystack item does not contain a regular expression
-		if strings.Count(h, string(p.GetStartDelimiter())) == 0 {
-			// If we have a simple string match, we've got a match!
-			if h == needle {
-				return true, nil
-			}
-
-			// Not string match, but also no regexp, continue with next haystack item
-			continue
-		}
-
-		if reg = m.get(h); reg != nil {
-			if matched, err := reg.MatchString(needle); err != nil {
-				// according to regexp2 documentation: https://github.com/dlclark/regexp2#usage
-				// The only error that the *Match* methods should return is a Timeout if you set the
-				// re.MatchTimeout field. Any other error is a bug in the regexp2 package.
-				return false, errors.WithStack(err)
-			} else if matched {
-				return true, nil
-			}
-			continue
-		}
-
-		reg, err = compiler.CompileRegex(h, p.GetStartDelimiter(), p.GetEndDelimiter())
-		if err != nil {
-			return false, errors.WithStack(err)
-		}
-
-		m.set(h, reg)
-		if matched, err := reg.MatchString(needle); err != nil {
-			// according to regexp2 documentation: https://github.com/dlclark/regexp2#usage
-			// The only error that the *Match* methods should return is a Timeout if you set the
-			// re.MatchTimeout field. Any other error is a bug in the regexp2 package.
-			return false, errors.WithStack(err)
-		} else if matched {
-			return true, nil
-		}
-	}
+	_ = "STUB: not implemented"
 	return false, nil
 }
+
+// This means that the current haystack item does not contain a regular expression
+
+// If we have a simple string match, we've got a match!
+
+// Not string match, but also no regexp, continue with next haystack item
+
+// according to regexp2 documentation: https://github.com/dlclark/regexp2#usage
+// The only error that the *Match* methods should return is a Timeout if you set the
+// re.MatchTimeout field. Any other error is a bug in the regexp2 package.
+
+// according to regexp2 documentation: https://github.com/dlclark/regexp2#usage
+// The only error that the *Match* methods should return is a Timeout if you set the
+// re.MatchTimeout field. Any other error is a bug in the regexp2 package.

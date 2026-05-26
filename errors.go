@@ -51,18 +51,7 @@ var (
 	}
 )
 
-func NewErrResourceNotFound(err error) error {
-	if err == nil {
-		err = errors.New("not found")
-	}
-
-	return errors.WithStack(&errorWithContext{
-		error:  err,
-		code:   http.StatusNotFound,
-		status: http.StatusText(http.StatusNotFound),
-		reason: "The requested resource could not be found.",
-	})
-}
+func NewErrResourceNotFound(err error) error { _ = "STUB: not implemented"; return nil }
 
 type errorWithContext struct {
 	code   int
@@ -73,25 +62,34 @@ type errorWithContext struct {
 
 // StatusCode returns the status code of this error.
 func (e *errorWithContext) StatusCode() int {
-	return e.code
+	_ = "STUB: not implemented"
+
+	// RequestID returns the ID of the request that caused the error, if applicable.
+	return 0
 }
 
-// RequestID returns the ID of the request that caused the error, if applicable.
 func (e *errorWithContext) RequestID() string {
+	_ = "STUB: not implemented"
+
+	// Reason returns the reason for the error, if applicable.
 	return ""
 }
 
-// Reason returns the reason for the error, if applicable.
 func (e *errorWithContext) Reason() string {
-	return e.reason
+	_ = "STUB: not implemented"
+
+	// ID returns the error id, if applicable.
+	return ""
 }
 
-// ID returns the error id, if applicable.
 func (e *errorWithContext) Status() string {
-	return e.status
+	_ = "STUB: not implemented"
+
+	// Details returns details on the error, if applicable.
+	return ""
 }
 
-// Details returns details on the error, if applicable.
 func (e *errorWithContext) Details() []map[string]interface{} {
-	return []map[string]interface{}{}
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -31,12 +31,9 @@ type StringEqualCondition struct {
 // Fulfills returns true if the given value is a string and is the
 // same as in StringEqualCondition.Equals
 func (c *StringEqualCondition) Fulfills(ctx context.Context, value interface{}, _ *Request) bool {
-	s, ok := value.(string)
-
-	return ok && s == c.Equals
+	_ = "STUB: not implemented"
+	return false
 }
 
 // GetName returns the condition's name.
-func (c *StringEqualCondition) GetName() string {
-	return "StringEqualCondition"
-}
+func (c *StringEqualCondition) GetName() string { _ = "STUB: not implemented"; return "" }
